@@ -53,7 +53,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        var ref = window.open('https://mediaweb.pt', '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        var ref = window.open('https://mediaweb.pt/projects/code-reader/index.html', '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
     // Update DOM on a Received Event
