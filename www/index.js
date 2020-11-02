@@ -34,7 +34,7 @@ var app = {
     
     onBackButton: function(event) {
         event.preventDefault();
-        if (window.location.href == 'https://mediaweb.pt/projects/code-reader/index.html') {
+        if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
 
         } else {
             navigator.app.backHistory();
