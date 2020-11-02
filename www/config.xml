@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.mediaweb.bywm"
+        id        = "com.newoxygen.noxpos"
         version   = "1.0.1">
 
-    <name>bywm</name>
+    <name>NOXPos</name>
 
     <description>
-        bywm
+        NOXPos
     </description>
 
-    <author href="https://mediaweb.pt" email="info@mediaweb.pt">
-        Mediaweb
+    <author href="https://newoxygen.com" email="info@newoxygen.com">
+        Newoxxygen
     </author>
 
     <!-- Define the main entry-point to the application -->
