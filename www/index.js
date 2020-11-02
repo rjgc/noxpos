@@ -34,11 +34,11 @@ var app = {
     
     onBackButton: function(event) {
         event.preventDefault();
-        if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
+        /*if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
 
         } else {
             navigator.app.backHistory();
-        }
+        }*/
        
     },
     
@@ -53,7 +53,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        var ref = window.open('https://mediaweb.pt/projects/code-reader/index.html', '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        var ref = window.open('http://62.48.151.76:8000/NOX/POS/APPS/Login/', '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
     // Update DOM on a Received Event
