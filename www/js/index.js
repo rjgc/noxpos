@@ -83,7 +83,9 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        ref = window.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        if(urlVal) {
+            ref = window.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        }
         //ref.addEventListener('exit', this.onExit, false);
 
     },
