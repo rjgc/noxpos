@@ -34,7 +34,13 @@ let app = {
 
     onBackButton: function(event) {
         event.preventDefault();
-        window.open('mobile/close');
+        if(history.length==1){
+            alert('Close2');
+            window.open('mobile/close');
+        }else{
+            alert('Back2');
+            history.back();
+        }
     },
 
     onBeforeUnload: function(event) {
@@ -47,24 +53,28 @@ let app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function (url) {
-        document.addEventListener("backbutton", function (event) {
-            event.preventDefault();
-            ref.close();
-            //history.back();
-        }, false );
-
         //app.receivedEvent('deviceready');
-        let ref = cordova.InAppBrowser.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        let ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
         ref.addEventListener('loadstart', function(event) {
             if (event.url.match("mobile/close")) {
                 ref.close();
             }
         });
 
-    }
+        document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
+            if(history.length==1){
+                alert('Close');
+                ref.close();
+            }else{
+                alert('Back');
+                history.back();
+            }
+        }, false );
+    },
 
     // Update DOM on a Received Event
-    /*receivedEvent: function(id) {
+    receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -73,6 +83,6 @@ let app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }*/
+    }
 
 };
