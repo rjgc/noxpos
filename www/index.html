@@ -68,12 +68,13 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
+        app.initialize();
         function startURL() {
             let inputUrl = document.getElementById("noxposURL");
             if (inputUrl && inputUrl.value != '') {
                 localStorage.setItem('noxposURL', inputUrl.value);
                 localStorage.setItem('resetURL','No');
-                app.initialize(inputUrl.value);
+                app.loadURL(inputUrl.value);
             }else {
                 alert('Insira um URL');
             }
@@ -84,10 +85,9 @@
             let inputUrl = document.getElementById("noxposURL");
             if (url && inputUrl) {
                 inputUrl.value = url;
-                app.initialize(inputUrl.value);
+                app.loadURL(inputUrl.value);
             }
         }
-
         init();
         //app.initialize();
     </script>
