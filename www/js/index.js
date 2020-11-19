@@ -31,22 +31,21 @@ var app = {
         /*document.addEventListener('backbutton', this.onBackButton, false);
         document.addEventListener('beforeunload', this.onBeforeUnload);*/
     },
-    
-    onBackButton: function(event) {
-        /*event.preventDefault();
-        if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
 
-        } else {
-            navigator.app.backHistory();
-        }*/
-       
+    onBackButton: function(event) {
+        event.preventDefault();
+        if(history.length==1){
+            window.open('mobile/close');
+        }else{
+            history.back();
+        }
     },
-    
-    onBeforeUnload: function(event) { 
+
+    onBeforeUnload: function(event) {
         event.preventDefault();
         event.returnValue = '';
     },
-    
+
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -54,6 +53,11 @@ var app = {
     onDeviceReady: function (url) {
         //app.receivedEvent('deviceready');
         var ref = window.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref.addEventListener('loadstart', function(event) {
+            if (event.url.match("mobile/close")) {
+                ref.close();
+            }
+        });
     },
 
     // Update DOM on a Received Event
@@ -67,5 +71,5 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-    
+
 };
