@@ -41,8 +41,10 @@ let app = {
         event.preventDefault();
         if(history.length==1){
             navigator.notification.confirm("Ir para configurações?", this.onConfirm, "Confirmar", "Sim,Não");
-        }else{
+        }else if(history.length>1){
             history.back();
+        }else {
+            navigator.notification.confirm("Sair da applicação?", this.onConfirmExit, "Confirmar", "Sim,Não");
         }
     },
 
@@ -51,6 +53,14 @@ let app = {
             return;
         }else{
             ref.close();
+        }
+    },
+
+    onConfirmExit: function(button) {
+        if(button == 2){//If User selected No, then we just do nothing
+            return;
+        }else{
+            navigator.app.exitApp();
         }
     },
 
