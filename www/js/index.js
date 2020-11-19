@@ -39,27 +39,38 @@ let app = {
 
     onBackButton: function(event) {
         event.preventDefault();
-        navigator.notification.confirm("Sair da aplicação?", this.onConfirm, "Confirmar", "Sim,Não");
+        navigator.notification.confirm(
+            'Sair da aplicação?', // message
+            this.onConfirm,            // callback to invoke with index of button pressed
+            'Confirmar',           // title
+            ['Sim','Não']     // buttonLabels
+        );
     },
 
     onConfirm: function(button) {
-        if(button == 2){//If User selected No, then we just do nothing
-            return;
-        }else{
-            navigator.app.exitApp();
+        if(button == 1){
+            try{
+                window.navigator.app.exitApp();
+            } catch (e) {}
+            try{
+                navigator.app.exitApp();
+            } catch (e) {}
         }
     },
 
 
     onExit: function(event) {
         event.preventDefault();
-        navigator.notification.confirm("Ir para configurações?", this.onExitConfirm, "Confirmar", "Sim,Não");
+        navigator.notification.confirm(
+            'Ir para configurações?', // message
+            this.onExitConfirm,            // callback to invoke with index of button pressed
+            'Confirmar',           // title
+            ['Sim','Não']     // buttonLabels
+        );
     },
 
     onExitConfirm: function(button) {
-        if(button == 2){//If User selected No, then we just do nothing
-            return;
-        }else{
+        if(button == 1){
             ref.close();
         }
     },
