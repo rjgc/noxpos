@@ -17,17 +17,19 @@
  * under the License.
  */
 let ref;
+let urlVal;
 let app = {
     // Application Constructor
     initialize: function(url) {
-        this.bindEvents(url);
+        urlVal = url;
+        this.bindEvents();
     },
 
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function(url) {
+    bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('backbutton', this.onBackButton, false);
         document.addEventListener('beforeunload', this.onBeforeUnload);
@@ -53,11 +55,9 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
+        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
-    loadURL: function (url) {
-        ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
-    },
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
