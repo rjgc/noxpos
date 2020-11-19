@@ -28,15 +28,17 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function(url) {
         document.addEventListener('deviceready', this.onDeviceReady(url), false);
-        /*document.addEventListener('backbutton', this.onBackButton, false);
-        document.addEventListener('beforeunload', this.onBeforeUnload);*/
+        document.addEventListener('backbutton', this.onBackButton, false);
+        document.addEventListener('beforeunload', this.onBeforeUnload);
     },
 
     onBackButton: function(event) {
         event.preventDefault();
         if(history.length==1){
+            alert('Close2');
             window.open('mobile/close');
         }else{
+            alert('Back2');
             history.back();
         }
     },
@@ -60,11 +62,14 @@ var app = {
         });
 
         document.addEventListener("backbutton", function (e) {
+            alert('Working');
             e.preventDefault();
 
             if(history.length==1){
-                window.open('mobile/close');
+                alert('Close');
+                ref.close();
             }else{
+                alert('Back');
                 history.back();
             }
         }, false );
