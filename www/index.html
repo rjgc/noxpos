@@ -40,9 +40,37 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>NOXPOS</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        function startURL() {
+            let inputUrl = document.getElementById("noxposURL");
+            if (inputUrl && inputUrl.value != '') {
+                localStorage.setItem('noxposURL', inputUrl.value);
+                localStorage.setItem('resetURL','No');
+                app.initialize(inputUrl.value,'yes');
+            }else {
+                alert('Insira um URL');
+            }
+        }
+
+        function init() {
+            let url = localStorage.getItem('noxposURL');
+            let inputUrl = document.getElementById("noxposURL");
+            if (url && inputUrl) {
+                inputUrl.value = url;
+                app.initialize(inputUrl.value,'no');
+            }else {
+                app.initialize('','no');
+            }
+        }
+
+        //init();
+        //app.initialize();
+    </script>
 </head>
 
-<body>
+<body onload="init()">
     <div class="app"></div>
     <div class="content">
         <!--<header>
@@ -65,32 +93,7 @@
         <!--<section class="main"></section>
         <footer></footer>-->
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        function startURL() {
-            let inputUrl = document.getElementById("noxposURL");
-            if (inputUrl && inputUrl.value != '') {
-                localStorage.setItem('noxposURL', inputUrl.value);
-                localStorage.setItem('resetURL','No');
-                app.initialize(inputUrl.value,'yes');
-            }else {
-                alert('Insira um URL');
-            }
-        }
 
-        function init() {
-            let url = localStorage.getItem('noxposURL');
-            let inputUrl = document.getElementById("noxposURL");
-            if (url && inputUrl) {
-                inputUrl.value = url;
-                app.initialize(inputUrl.value,'no');
-            }
-        }
-
-        init();
-        //app.initialize();
-    </script>
 </body>
 
 </html>
