@@ -33,7 +33,7 @@ let app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('backbutton', this.onBackButton, false);
+        //document.addEventListener('backbutton', this.onBackButton, false);
         //document.addEventListener('beforeunload', this.onBeforeUnload);
     },
 
@@ -84,7 +84,7 @@ let app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         ref = window.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
-        ref.addEventListener('exit', this.onExit, false);
+        //ref.addEventListener('exit', this.onExit, false);
 
     },
 
