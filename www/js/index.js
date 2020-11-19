@@ -18,10 +18,12 @@
  */
 let ref;
 let urlVal;
+let cacheVal = 'no';
 let app = {
     // Application Constructor
-    initialize: function(url) {
+    initialize: function(url,cache) {
         urlVal = url;
+        cacheVal = cache;
         this.bindEvents();
     },
 
@@ -38,9 +40,17 @@ let app = {
     onBackButton: function(event) {
         event.preventDefault();
         if(history.length==1){
-            ref.close();
+            navigator.notification.confirm("Ir para configurações?", this.onConfirm, "Confirmar", "Sim,Não");
         }else{
             history.back();
+        }
+    },
+
+     onConfirm: function(button) {
+        if(button == 2){//If User selected No, then we just do nothing
+            return;
+        }else{
+            ref.close();
         }
     },
 
@@ -55,7 +65,7 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
 
