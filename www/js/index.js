@@ -40,19 +40,34 @@ let app = {
     onBackButton: function(event) {
         event.preventDefault();
         if(history.length==1){
-            navigator.notification.confirm("Ir para configurações?", this.onConfirm, "Confirmar", "Sim,Não");
+            navigator.notification.confirm("Sair da aplicação?", this.onConfirm, "Confirmar", "Sim,Não");
         }else{
             history.back();
         }
     },
 
-     onConfirm: function(button) {
+    onConfirm: function(button) {
+        if(button == 2){//If User selected No, then we just do nothing
+            return;
+        }else{
+            navigator.app.exitApp();
+        }
+    },
+
+
+    onExit: function(event) {
+        event.preventDefault();
+        navigator.notification.confirm("Ir para configurações?", this.onExitConfirm, "Confirmar", "Sim,Não");
+    },
+
+    onExitConfirm: function(button) {
         if(button == 2){//If User selected No, then we just do nothing
             return;
         }else{
             ref.close();
         }
     },
+    
 
     onBeforeUnload: function(event) {
         event.preventDefault();
@@ -65,7 +80,9 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,hardwareback=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref.addEventListener('exit', this.onExit, false);
+
     },
 
 
