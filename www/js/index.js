@@ -65,7 +65,7 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        ref = cordova.InAppBrowser.open(urlVal, '_self', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref = cordova.InAppBrowser.open(urlVal, '_self', 'location=no,hardwareback=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
 
