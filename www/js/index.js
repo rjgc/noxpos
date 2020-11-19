@@ -49,12 +49,8 @@ let app = {
 
     onConfirm: function(button) {
         if(button == 1){
-            try{
-                window.navigator.app.exitApp();
-            } catch (e) {}
-            try{
-                navigator.app.exitApp();
-            } catch (e) {}
+            ref.close();
+            history.back();
         }
     },
 
@@ -88,7 +84,7 @@ let app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
-        ref.addEventListener('exit', this.onExit, false);
+        //ref.addEventListener('exit', this.onExit, false);
 
     },
 
