@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+let ref;
 let app = {
     // Application Constructor
     initialize: function(url) {
@@ -35,10 +36,8 @@ let app = {
     onBackButton: function(event) {
         event.preventDefault();
         if(history.length==1){
-            alert('Close2');
-            window.open('mobile/close');
+            ref.close();
         }else{
-            alert('Back2');
             history.back();
         }
     },
@@ -54,23 +53,10 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function (url) {
         //app.receivedEvent('deviceready');
-        let ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
-        ref.addEventListener('loadstart', function(event) {
-            if (event.url.match("mobile/close")) {
-                ref.close();
-            }
-        });
+    },
 
-        document.addEventListener("backbutton", function (e) {
-            e.preventDefault();
-            if(history.length==1){
-                alert('Close');
-                ref.close();
-            }else{
-                alert('Back');
-                history.back();
-            }
-        }, false );
+    loadURL: function (url) {
+        ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
     // Update DOM on a Received Event
