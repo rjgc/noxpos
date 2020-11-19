@@ -73,7 +73,7 @@
             if (inputUrl && inputUrl.value != '') {
                 localStorage.setItem('noxposURL', inputUrl.value);
                 localStorage.setItem('resetURL','No');
-                app.initialize(inputUrl.value);
+                app.initialize(inputUrl.value,'yes');
             }else {
                 alert('Insira um URL');
             }
@@ -84,7 +84,7 @@
             let inputUrl = document.getElementById("noxposURL");
             if (url && inputUrl) {
                 inputUrl.value = url;
-                app.initialize(inputUrl.value);
+                app.initialize(inputUrl.value,'no');
             }
         }
 
