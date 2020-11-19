@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+let app = {
     // Application Constructor
     initialize: function(url) {
         this.bindEvents(url);
@@ -54,7 +54,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function (url) {
         //app.receivedEvent('deviceready');
-        var ref = window.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        let ref = cordova.InAppBrowser.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
         ref.addEventListener('loadstart', function(event) {
             if (event.url.match("mobile/close")) {
                 ref.close();
