@@ -33,13 +33,12 @@ var app = {
     },
 
     onBackButton: function(event) {
-        /*event.preventDefault();
-        if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
-
-        } else {
-            navigator.app.backHistory();
-        }*/
-
+        event.preventDefault();
+        if(history.length==1){
+            window.open('mobile/close');
+        }else{
+            history.back();
+        }
     },
 
     onBeforeUnload: function(event) {
@@ -54,6 +53,11 @@ var app = {
     onDeviceReady: function (url) {
         //app.receivedEvent('deviceready');
         var ref = window.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref.addEventListener('loadstart', function(event) {
+            if (event.url.match("mobile/close")) {
+                ref.close();
+            }
+        });
     },
 
     // Update DOM on a Received Event
