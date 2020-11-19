@@ -34,17 +34,15 @@ let app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('backbutton', this.onBackButton, false);
-        document.addEventListener('beforeunload', this.onBeforeUnload);
+        //document.addEventListener('beforeunload', this.onBeforeUnload);
     },
 
     onBackButton: function(event) {
         event.preventDefault();
         if(history.length==1){
             navigator.notification.confirm("Ir para configurações?", this.onConfirm, "Confirmar", "Sim,Não");
-        }else if(history.length>1){
+        }else{
             history.back();
-        }else {
-            navigator.notification.confirm("Sair da applicação?", this.onConfirmExit, "Confirmar", "Sim,Não");
         }
     },
 
@@ -53,14 +51,6 @@ let app = {
             return;
         }else{
             ref.close();
-        }
-    },
-
-    onConfirmExit: function(button) {
-        if(button == 2){//If User selected No, then we just do nothing
-            return;
-        }else{
-            navigator.app.exitApp();
         }
     },
 
@@ -75,7 +65,7 @@ let app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
-        ref = cordova.InAppBrowser.open(urlVal, '_blank', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        ref = cordova.InAppBrowser.open(urlVal, '_self', 'location=no,clearsessioncache='+cacheVal+',toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
 
