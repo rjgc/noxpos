@@ -39,15 +39,57 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>bywm</title>
+    <title>NOXPOS</title>
 </head>
 
 <body>
     <div class="app"></div>
+    <div class="content">
+        <!--<header>
+            <h1>NoxPOS</h1>
+        </header>-->
+        <section class="config">
+
+
+            <div class=container>
+                <div class="center">
+                    <img src="img/logo_noxpos.png">
+                </div>
+                <p>Introduza o Url do POS</p>
+                <label for="noxposURL">Url:</label>
+                <input type="text" id="noxposURL" placeholder="Ex. https://url_pos">
+                <button onclick="startURL()">Guardar</button>
+                <p class="newoxygen"><span class="grey">developed by </span><span class="blue">new</span>oxygen</p>
+            </div>
+        </section>
+        <!--<section class="main"></section>
+        <footer></footer>-->
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        app.initialize();
+        function startURL() {
+            let inputUrl = document.getElementById("noxposURL");
+            if (inputUrl && inputUrl.value != '') {
+                localStorage.setItem('noxposURL', inputUrl.value);
+                localStorage.setItem('resetURL','No');
+                app.initialize(inputUrl.value);
+            }else {
+                alert('Insira um URL');
+            }
+        }
+
+        function init() {
+            let url = localStorage.getItem('noxposURL');
+            let inputUrl = document.getElementById("noxposURL");
+            if (url && inputUrl) {
+                inputUrl.value = url;
+                app.initialize(inputUrl.value);
+            }
+        }
+
+        init();
+        //app.initialize();
     </script>
 </body>
 

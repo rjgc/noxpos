@@ -18,42 +18,42 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
-        this.bindEvents();
+    initialize: function(url) {
+        this.bindEvents(url);
     },
 
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+    bindEvents: function(url) {
+        document.addEventListener('deviceready', this.onDeviceReady(url), false);
         /*document.addEventListener('backbutton', this.onBackButton, false);
         document.addEventListener('beforeunload', this.onBeforeUnload);*/
     },
-    
+
     onBackButton: function(event) {
-        event.preventDefault();
-        /*if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
+        /*event.preventDefault();
+        if (window.location.href == 'http://62.48.151.76:8000/NOX/POS/APPS/Login/') {
 
         } else {
             navigator.app.backHistory();
         }*/
-       
+
     },
-    
-    onBeforeUnload: function(event) { 
+
+    onBeforeUnload: function(event) {
         event.preventDefault();
         event.returnValue = '';
     },
-    
+
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
+    onDeviceReady: function (url) {
         //app.receivedEvent('deviceready');
-        var ref = window.open('http://62.48.151.76:8000/NOX/POS/APPS/Login/', '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
+        var ref = window.open(url, '_self', 'location=no,toolbar=yes,zoom=no,closebuttoncaption=Sair');
     },
 
     // Update DOM on a Received Event
@@ -67,5 +67,5 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-    
+
 };
