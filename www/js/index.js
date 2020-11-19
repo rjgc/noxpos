@@ -39,11 +39,7 @@ let app = {
 
     onBackButton: function(event) {
         event.preventDefault();
-        if(history.length==1){
-            navigator.notification.confirm("Sair da aplicação?", this.onConfirm, "Confirmar", "Sim,Não");
-        }else{
-            history.back();
-        }
+        navigator.notification.confirm("Sair da aplicação?", this.onConfirm, "Confirmar", "Sim,Não");
     },
 
     onConfirm: function(button) {
@@ -67,7 +63,7 @@ let app = {
             ref.close();
         }
     },
-    
+
 
     onBeforeUnload: function(event) {
         event.preventDefault();
