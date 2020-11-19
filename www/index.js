@@ -58,6 +58,16 @@ var app = {
                 ref.close();
             }
         });
+
+        document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
+
+            if(history.length==1){
+                window.open('mobile/close');
+            }else{
+                history.back();
+            }
+        }, false );
     },
 
     // Update DOM on a Received Event
